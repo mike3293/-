@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    </script>
+    <title>jquery</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
 </head>
-<script>
-    const getName = () => {
-        const settings = {
-            'async': true,
-            'url': 'http://localhost:5000/api/name',
-            'method': 'GET',
-        };
-
-        $.ajax(settings).done(response => {
-            document.write(response);
-        });
-    };
-</script>
 <body>
-<button onclick="getName()">get name</button>
+<div id="full-name"></div>
+<script>
+    $(document).ready(() => {
+        $.ajax(
+            {
+                'async': true,
+                'crossDomain': true,
+                'url': 'http://localhost:5000/api/name',
+                'method': 'GET',
+                success: function (data) {
+                    document.write(data);
+                },
+            },
+        );
+    });
+</script>
 </body>
 </html>

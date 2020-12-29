@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
 <script>
-    const getName = async () => {
-        const response = await fetch('http://localhost:5000/api/name');
+    async function notify() {
+        let response = await fetch('http://localhost:5000/api/name');
         if (response.ok) {
-            const result = await response.text();
+            let result = await response.text();
             document.write(result);
         } else {
-            alert(response.status);
+            alert('Ошибка HTTP: ' + response.status);
         }
-    };
+    }
 </script>
+
 <body>
-<button onclick="getName()">get name</button>
+<button onclick="notify()" style="height: 50px; width: 120px;">Start</button>
 </body>
+
 </html>

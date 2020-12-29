@@ -1,11 +1,13 @@
-const express = require('express');
-const app = express();
+let http = require('http');
+let fs = require('fs');
 
-app.get('/api/name', (request, response) => {
-    response.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-    response.end('Городилов Михаил Петрович');
-});
-
-app.listen(5000);
-
-console.log('Server running at http://localhost:5000/');
+http.createServer((request, response) => {
+    if (request.url === '/api/name') {
+        response.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+        response.end('Городилов');
+    } else {
+        response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        response.end('Hello world');
+    }
+}).listen(5000);
+console.log('start');

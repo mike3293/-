@@ -1,21 +1,22 @@
-const fs = require('fs');
-const express = require('express');
-const app = express();
+let http = require('http');
+let fs = require('fs');
 
-app.get('/jpg', (request, response) => {
-    const jpgFile = './pic.jpg';
-    let jpg = null;
-    fs.stat(jpgFile, (err, stat) => {
-        if (err) {
-            console.log('error', err);
-        } else {
-            jpg = fs.readFileSync(jpgFile);
-            response.writeHead(200, { 'Content-Type': 'image/jpg', 'Content-Length': stat.size });
-            response.end(jpg, 'binary');
-        }
-    });
-});
-
-app.listen(5000);
-
-console.log('Server running at http://localhost:5000/');
+http.createServer((request, response) => {
+    if (request.url === '/pic') {
+        const pngf = './pic.png';
+        let png = null;
+        fs.stat(pngf, (err, stat) => {
+            if (err) {
+                console.log('error', err);
+            } else {
+                png = fs.readFileSync(pngf);
+                response.writeHead(200, { 'Content-Type': 'image/png', 'Content-Length': stat.size });
+                response.end(png);
+            }
+        });
+    } else {
+        response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        response.end('Hello world');
+    }
+}).listen(5000);
+console.log('start');

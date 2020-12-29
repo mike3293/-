@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div>
+        <label>sender :</label>
+        <input type="text" class="col-3" id="sender" min="0" />
+    </div>
+    <div>
+        <label>receiver: </label>
+        <input type="text" class="col-3" id="receiver" />
+    </div>
+    <div>
+        <label>message: </label>
+        <input type="text" class="col-3" id="message" />
+    </div>
+    <div>
+        <button onclick="send()">send</button>
+    </div>
+</div>
+<script>
+    function send() {
+        let sender = document.getElementById('sender');
+        let receiver = document.getElementById('receiver');
+        let message = document.getElementById('message');
+        fetch('http://localhost:5000/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    sender: sender.value,
+                    receiver: receiver.value,
+                    message: message.value,
+                },
+            ),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data));
+    }
+</script>
+</body>
+</html>

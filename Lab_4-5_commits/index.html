@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="getResult"></div>
+<button onclick="Get()">Get</button>
+<div>
+    <div>
+        <label for="id">ID</label>
+        <input type="number" id="id" min="0" />
+    </div>
+    <div>
+        <label for="Name">FIO</label>
+        <input type="text" id="Name" />
+    </div>
+    <div>
+        <label for="BDay">Birthday</label>
+        <input type="date" id="BDay" />
+    </div>
+    <div>
+        <button onclick="Post()">POST</button>
+    </div>
+</div>
+<script>
+    function Post() {
+        console.log('POST');
+        fetch('http://localhost:3000/api/db', {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ id: id.value, name: Name.value, bday: BDay.value }),
+        })
+            .then(res => res.json())
+            .then(pdata => console.log('POST.pdata', pdata));
+    }
+
+    function Get() {
+        console.log('Get');
+        fetch('http://localhost:3000/api/db', {
+            method: 'Get', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        })
+            .then(res => res.json())
+            .then(pdata => {
+                console.log('POST.pdata', pdata);
+                getResult.innerHTML = '';
+                pdata.forEach(element => {
+                    getResult.innerHTML += (element.id + ' ' + element.name + ' ' + element.bday +
+                        `\t<button onclick="Delete(${element.id})">Delete</button> ` +
+                        `\t<button onclick="Put(${element.id})">Put</button> ` + '<br/>');
+                });
+            });
+    }
+
+    function Delete(id) {
+        console.log('Delete', id);
+        fetch(`http://localhost:3000/api/db?id=${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        })
+            .then(res => res.json())
+            .then(pdata => {
+                Get();
+                console.log('Delete.pdata', pdata);
+            });
+    }
+
+    function Put(idItem) {
+        console.log('PUT');
+        fetch('http://localhost:3000/api/db', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ id: idItem, name: Name.value, bday: BDay.value }),
+        })
+            .then(res => res.json())
+            .then(pdata => {
+                console.log('POST.pdata', pdata);
+                Get();
+            });
+
+    }
+</script>
+</body>
+</html>
