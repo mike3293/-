@@ -1,0 +1,14 @@
+{
+  "__comment": "com",
+  "x": 1,
+  "y": 2,
+  "s": "soo",
+  "m": [
+    "a",
+    "b"
+  ],
+  "o": {
+    "surname": "Ivanov",
+    "name": "Ivan"
+  }
+}

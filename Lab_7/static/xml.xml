@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <notes>
+        <note>
+            <title>Hello</title>
+            <status>past</status>
+        </note>
+        <note>
+            <title>Node js blablabla</title>
+            <status>current</status>
+        </note>
+    </notes>
+</root>

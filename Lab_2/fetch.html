@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    const getName = async () => {
+        const response = await fetch('http://localhost:5000/api/name');
+        if (response.ok) {
+            const result = await response.text();
+            document.write(result);
+        } else {
+            alert(response.status);
+        }
+    };
+</script>
+<body>
+<button onclick="getName()">get name</button>
+</body>
+</html>

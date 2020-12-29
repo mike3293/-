@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    const xhr = new XMLHttpRequest();
+
+    const getName = () => {
+        xhr.open('GET', 'http://localhost:5000/api/name', true);
+        xhr.send();
+        xhr.onload = () => {
+            if (xhr.status !== 200) {
+                alert(xhr.status + ':' + xhr.statusText);
+            } else {
+                document.write(xhr.response);
+            }
+        };
+    };
+</script>
+<body>
+<button onclick="getName()">get name</button>
+</body>
+</html>

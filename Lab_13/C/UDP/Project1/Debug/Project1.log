@@ -1,0 +1,8 @@
+﻿  UDP.cpp
+C:\Users\admin\Desktop\ПСКП\Lab_13\C\UDP\Project1\UDP.cpp(10,1): warning C4005: INADDR_ANY: изменение макроопределения
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\ws2def.h(598): message : см. предыдущее определение "INADDR_ANY"
+C:\Users\admin\Desktop\ПСКП\Lab_13\C\UDP\Project1\UDP.cpp(12,1): warning C4005: INADDR_BROADCAST: изменение макроопределения
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\ws2def.h(600): message : см. предыдущее определение "INADDR_BROADCAST"
+C:\Users\admin\Desktop\ПСКП\Lab_13\C\UDP\Project1\UDP.cpp(87,12): warning C4101: cS: неиспользованная локальная переменная
+C:\Users\admin\Desktop\ПСКП\Lab_13\C\UDP\Project1\UDP.cpp(73): warning C4715: GetErrorMsgText: значение возвращается не при всех путях выполнения
+  Project1.vcxproj -> C:\Users\admin\Desktop\ПСКП\Lab_13\C\UDP\Debug\Project1.exe

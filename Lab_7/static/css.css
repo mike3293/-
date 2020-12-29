@@ -1,0 +1,23 @@
+label {
+    font-size: 40px;
+    color: rgba(23, 16, 182, 0.8);
+}
+
+.text {
+    color: rgb(0, 44, 100);
+    font-size: larger;
+}
+
+.line_block {
+    float: left;
+    margin: 2%;
+    display:inline-block;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    max-width: min-content;
+    margin: 0 auto;
+    overflow-wrap: normal ;
+}
