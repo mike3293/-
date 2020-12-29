@@ -8,7 +8,7 @@ connectionPool = new sql.ConnectionPool(config).connect().then(pool => {
 
 async function getAllByName(name) {
     try {
-        let pool = await sql.ConnectionPool(config);
+        let pool = await connectionPool;
         let pulpits = await pool
             .request()
             .query(`SELECT * FROM ${name.toUpperCase()}`);
@@ -19,7 +19,7 @@ async function getAllByName(name) {
 }
 
 async function postFaculties(faculty, faculty_name) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('faculty', sql.NVarChar, faculty)
@@ -30,7 +30,7 @@ async function postFaculties(faculty, faculty_name) {
 }
 
 async function postPulpits(pulpit, pulpit_name, faculty) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('pulpit', sql.NVarChar, pulpit)
@@ -42,7 +42,7 @@ async function postPulpits(pulpit, pulpit_name, faculty) {
 }
 
 async function postSubjects(subject, subject_name, pulpit) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('subject', sql.NVarChar, subject)
@@ -54,7 +54,7 @@ async function postSubjects(subject, subject_name, pulpit) {
 }
 
 async function postAuditoriumsTypes(auditorium_type, auditorium_typename) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('auditorium_type', sql.NVarChar, auditorium_type)
@@ -70,7 +70,7 @@ async function postAuditoriums(
     auditorium_capacity,
     auditorium_type,
 ) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('auditorium', sql.NVarChar, auditorium)
@@ -84,7 +84,7 @@ async function postAuditoriums(
 }
 
 async function putFaculties(faculty, faculty_name) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('faculty', sql.NVarChar, faculty)
@@ -95,7 +95,7 @@ async function putFaculties(faculty, faculty_name) {
 }
 
 async function putPulpits(pulpit, pulpit_name, faculty) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('pulpit', sql.NVarChar, pulpit)
@@ -107,7 +107,7 @@ async function putPulpits(pulpit, pulpit_name, faculty) {
 }
 
 async function putSubjects(subject, subject_name, pulpit) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('subject', sql.NVarChar, subject)
@@ -119,7 +119,7 @@ async function putSubjects(subject, subject_name, pulpit) {
 }
 
 async function putAuditoriumsTypes(auditorium_type, auditorium_typename) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('auditorium_type', sql.NVarChar, auditorium_type)
@@ -135,7 +135,7 @@ async function putAuditoriums(
     auditorium_capacity,
     auditorium_type,
 ) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('auditorium', sql.NVarChar, auditorium)
@@ -149,7 +149,7 @@ async function putAuditoriums(
 }
 
 async function deleteFaculties(faculty_name) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('faculty_name', sql.NVarChar, faculty_name)
@@ -157,7 +157,7 @@ async function deleteFaculties(faculty_name) {
 }
 
 async function deletePulpits(pulpit_name) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('pulpit_name', sql.NVarChar, pulpit_name)
@@ -165,7 +165,7 @@ async function deletePulpits(pulpit_name) {
 }
 
 async function deleteSubjects(subject_name) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('subject_name', sql.NVarChar, subject_name)
@@ -173,7 +173,7 @@ async function deleteSubjects(subject_name) {
 }
 
 async function deleteAuditoriumsTypes(auditorium_typename) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('auditorium_typename', sql.NVarChar, auditorium_typename)
@@ -183,7 +183,7 @@ async function deleteAuditoriumsTypes(auditorium_typename) {
 }
 
 async function deleteAuditoriums(auditorium_name) {
-    let pool = await sql.connect(config);
+    let pool = await connectionPool;
     return pool
         .request()
         .input('auditorium_name', sql.NVarChar, auditorium_name)
