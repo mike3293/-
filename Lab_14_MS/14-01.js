@@ -284,7 +284,7 @@ let DELETE_handler = (req, res) => {
         case '/api/faculties':
             res.writeHead(200, { 'Content-Type': 'text/plain' });
             dboperations
-                .deleteFaculties(path_mas[3])
+                .deleteFaculties(decodeURI(path_mas[3]))
                 .then((records) => {
                     res.end('deleted');
                 })

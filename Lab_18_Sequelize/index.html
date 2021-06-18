@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="Get Pulpits" onclick="getPulpits()">
+<div id="pulpits"></div>
+<br /><br />
+<label for="pulpit_post">pulpit</label><input type="text" id="pulpit_post" /><br /><br />
+<label for="pulpit_name_post">pulpit_name</label><input type="text" id="pulpit_name_post" /><br /><br />
+<label for="faculty_post">faculty</label><input type="text" id="faculty_post" /><br /><br />
+<input type="button" value="Post Pulpits" onclick="postPulpits()">
+<br /><br />
+<label for="pulpit_post">pulpit</label><input type="text" id="pulpit_put" /><br /><br />
+<label for="pulpit_name_post">pulpit_name</label><input type="text" id="pulpit_name_put" /><br /><br />
+<label for="faculty_post">faculty</label><input type="text" id="faculty_put" /><br /><br />
+<input type="button" value="Put Pulpits" onclick="putPulpits()">
+<br /><br />
+<label for="pulpit_post">pulpit</label><input type="text" id="pulpit_delete" /><br /><br />
+<input type="button" value="Delete Pulpits" onclick="deletePulpits()">
+<script>
+    function getPulpits() {
+        let pulpits_div = document.getElementById('pulpits');
+        fetch('http://localhost:3000/api/pulpits', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(pulpits => {
+                pulpits_div.innerHTML = '';
+                pulpits.forEach(pulpit => {
+                    pulpits_div.innerHTML += `<h5>${pulpit.pulpit} | ${pulpit.pulpit_name} | ${pulpit.faculty}</h5>`;
+                });
+            });
+    }
+
+    function postPulpits() {
+        let pulpit_post = document.getElementById('pulpit_post').value;
+        let pulpit_name_post = document.getElementById('pulpit_name_post').value;
+        let faculty_post = document.getElementById('faculty_post').value;
+        if (pulpit_post && pulpit_name_post && faculty_post) {
+            fetch('http://localhost:3000/api/pulpits', {
+                method: 'POST',
+                body: JSON.stringify({ pulpit: pulpit_post, pulpit_name: pulpit_name_post, faculty: faculty_post }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            }).then(res => res.json())
+                .then(mes => console.log(mes))
+                .catch(err => console.log(err));
+        }
+    }
+
+    function putPulpits() {
+        let pulpit_put = document.getElementById('pulpit_put').value;
+        let pulpit_name_put = document.getElementById('pulpit_name_put').value;
+        let faculty_put = document.getElementById('faculty_put').value;
+        if (pulpit_put && pulpit_name_put && faculty_put) {
+            fetch('http://localhost:3000/api/pulpits', {
+                method: 'PUT',
+                body: JSON.stringify({ pulpit: pulpit_put, pulpit_name: pulpit_name_put, faculty: faculty_put }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            }).then(res => res.json())
+                .then(mes => console.log(mes))
+                .catch(err => console.log(err));
+        }
+    }
+
+    function deletePulpits() {
+        let pulpit_delete = document.getElementById('pulpit_delete').value;
+        if (pulpit_delete) {
+            console.log('delete');
+            fetch(`http://localhost:3000/api/pulpits/${pulpit_delete}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            }).then(res => res.json())
+                .then(mes => console.log(mes))
+                .catch(err => console.log(err));
+        }
+    }
+</script>
+</body>
+</html>

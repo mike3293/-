@@ -1,0 +1,6 @@
+{
+  "host": "redis-17151.c14.us-east-1-2.ec2.cloud.redislabs.com",
+  "port": 17151,
+  "no_ready_check": true,
+  "auth_pass": "lUZW6TuvdNPp3CdsVSxKqgdhJJjs4bZN"
+}

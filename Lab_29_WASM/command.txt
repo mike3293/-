@@ -1,0 +1,8 @@
+emcc -O1 Source.c -g -o Source.html -s WASM=1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -fno-exceptions -fno-rtti --llvm-lto 1
+
+emcc -O3 -o Source.wasm -s WASM=1 Source.c
+
+Здесь emcc это собственно Emscripten, -O1 опция оптимизации, fib.c что компилировать, -o fib.html 
+куда компилировать, и дальше опции -f чтобы отключить то что нам не нужно.
+Главное отличие здесь это добавлении опции -s WASM=1. Остальные -s и -f добавлены в попытках объяснить Emscripten что нам НЕ нужно.
+ Emscripten умеет слишком много, и поэтому «на всякий случай», «вдруг понадобится» он много чего добавляет в результирующие файлы
